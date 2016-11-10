@@ -1,0 +1,33 @@
+{
+  "name": "ideia-loader",
+  "version": "0.1.0",
+  "description": "A simple jquery plugin to load XHR content",
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "webpack-dev-server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "jquery",
+    "plugin",
+    "scroll",
+    "ajax"
+  ],
+  "author": "Ideia SEO <desenvolvimento@ideiaseo.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-loader": "^6.2.7",
+    "babel-preset-latest": "^6.16.0",
+    "babel-register": "^6.18.0",
+    "chai": "^3.5.0",
+    "css-loader": "^0.25.0",
+    "mocha": "^3.1.2",
+    "style-loader": "^0.13.1",
+    "webpack": "^2.1.0-beta.25",
+    "webpack-dev-server": "^2.1.0-beta.10"
+  },
+  "dependencies": {
+    "bootstrap": "^3.3.7"
+  }
+}
