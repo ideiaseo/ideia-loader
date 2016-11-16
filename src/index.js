@@ -8,11 +8,17 @@ import plugin from './lib/plugin';
 class Loader {
     constructor(element, options) {
         
-        this.$element = $(element);
+        let $element = $(element);
+
+        options.onScroll = options.onScroll ? options.onScroll : this.containerOnScroll
+        options.onDispatch = options.onDispatch ? options.onDispatch : this.defaultDispatcher
+        options.onDone = options.onDone ? options.onDone : this.defaultDone
+        
+        $element.data('loader_options', options)
 
         if(options.autoTrigger == true){
 
-            let $scrollElement = this.$element
+            let $scrollElement = $element
 
             switch(options.scrollContainer){
                 case 'window':
@@ -20,53 +26,85 @@ class Loader {
                     break;
                 case 'self':
                 default:
-                    $scrollElement = this.$element
+                    $scrollElement = $element
                     break;
             }
 
-            options.onScroll = options.onScroll ? options.onScroll : this.containerOnScroll
-
-            $($scrollElement).on('scroll', options.onScroll)
+            $($scrollElement).on('scroll', function doScrollPreEvent(event){
+                options.onScroll.call($element, event, $scrollElement)
+            })
 
         }else{
-
-
 
         }
 
     }
 
-    containerOnScroll(event){
+    containerOnScroll(event, scroller){
         
         let $element = $(this)
+        let $scroller = $(scroller)
+        let options = $element.data('loader_options')
 
-        console.log($(this).scrollTop() - $element.offset().top)
-        console.dir($element.data())
+        let $scrollerPoint = $scroller.scrollTop() + $scroller.outerHeight()
+        let $elementPoint = $element.offset().top + $element.outerHeight() - options.offset
 
-        // if($(this).scrollTop() > options.offset){
-
-        // }
+        if($scrollerPoint > $elementPoint){
+            options.onDispatch.call(this)
+        }
 
     }
 
     defaultDispatcher(){
-        console.log('In Dispatcher')
+        let $element = $(this)
+        let options = $element.data('loader_options')
+
+        if($element.data('loader_running')){
+            return;
+        }
+
+        $element.data('loader_running', true)
+
+        let method = $element.data('method')
+        let url = $element.data('url')
+
+        this.asyncLoad = $.ajax({
+            
+            'method': method ? method : 'GET',
+            'url': url ? url : window.location.href,
+            'dataType': 'html'
+
+        }).done(function preDone(data){
+
+            options.onDone.call($element[0], data)
+            $element.data('loader_running', false)
+
+        }).fail(function(jqXHR, textStatus, errorThrown){
+
+            console.log(textStatus)
+
+        })
+
     }
 
-    defaultDone(){
-        console.log('In Done')
+    defaultDone(data){
+        let $element = $(this)
+        let $doneContainer = $('<div></div>').addClass('ideia-loader-container')
+
+        $doneContainer.append($(data))
+        $element.append($doneContainer);
     }
 
 }
 
 Loader.DEFAULTS = {
-    offset: 100,
+    offset: 200,
     speed: 500,
     autoTrigger: true,
-    onDispatch: Loader.defaultDispatcher,
+    onDispatch: null,
     onScroll: null,
-    onDone: Loader.defaultDone,
-    scrollContainer: 'self'
+    onDone: null,
+    scrollContainer: 'window'
 };
 
 plugin('ideiaLoader', Loader);
