@@ -3,21 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <title>ideiaLoader</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <script src="http://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   <style>
-  #ideia-loader {
-    height: 300px;
-    overflow: auto;
-  }
+    
   </style>
 </head>
 <body>
   <div class="container">
     <div class="row">
-      <div class="col-sm-offset-3 col-sm-6">
-        <div id="ideia-loader">
+      <div class="col-xs-4">
+        <div id="ideia-loader" data-url="more-text.html" data-method="get">
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed diam velit. Donec blandit odio gravida eros tempor, eget laoreet risus imperdiet. Aenean facilisis ante convallis aliquam imperdiet. Aenean vestibulum lectus ac vestibulum facilisis. Phasellus tristique blandit varius. Integer sed nisi vel sapien tempor ullamcorper. Ut egestas lorem et mollis suscipit. In ac dictum sem. Donec dignissim est purus, vel cursus elit ornare maximus.</p>
           <p>Maecenas dignissim finibus massa ac placerat. Sed leo odio, molestie vitae interdum sed, hendrerit at odio. Integer porttitor, nunc sed elementum pulvinar, nisl mi euismod ex, ut molestie magna sem mattis erat. Morbi felis tellus, posuere sit amet magna interdum, fringilla iaculis nulla. Aliquam eget odio dapibus, cursus diam ac, auctor enim. Phasellus a tempus odio, non tempus nunc. In dictum neque quam, tincidunt mattis tortor dignissim nec. Cras congue enim vitae facilisis blandit. Mauris eget consectetur tortor. Curabitur eros lectus, pellentesque quis odio sed, aliquam placerat massa. Aenean id accumsan ipsum. Nulla facilisi. Nulla dignissim pharetra lorem, eget tempor dolor pharetra in. Etiam odio est, accumsan nec lectus sed, mattis tincidunt felis. Nam vitae magna sem. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</p>
           <p>In ultrices ante nunc. Phasellus scelerisque non sem in pretium. Quisque eleifend a justo sit amet bibendum. Ut et commodo risus. Nulla scelerisque auctor ipsum quis tincidunt. Quisque placerat tortor quis urna maximus, ac suscipit nulla mollis. Ut vitae ullamcorper ex. Phasellus a massa velit. Maecenas varius ligula eu elit laoreet, id elementum lorem venenatis. In molestie ipsum id lacus pulvinar, vitae rhoncus sapien accumsan. Integer mattis, tortor id varius vestibulum, magna nulla consequat elit, at molestie purus leo placerat eros. Phasellus ultricies, lacus id vehicula varius, orci diam accumsan sapien, fermentum mattis elit felis ut mauris. Fusce sit amet nulla a tellus aliquam venenatis.</p>
@@ -29,7 +26,11 @@
   </div>
   <script src="/assets/ideialoader.js"></script>
   <script>
-    $( '#ideia-loader' ).ideiaLoader();
+
+      $('#ideia-loader').ideiaLoader({
+        offset: 0
+      });
+  
   </script>
 </body>
 </html>
